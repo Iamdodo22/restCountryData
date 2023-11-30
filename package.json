@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "start": "tailwindcss -i ./style.css -o ./output.css -w"
+  },
+  "dependencies": {
+    "tailwindcss": "^3.3.5"
+  }
+}
