@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base{
+    :root{
+        --color-text:hsl(200, 15%, 8%);
+        --color-bg:hsl(0, 0%, 98%);
+        --color-highlight:hsl(0, 0%, 100%);
+
+        --color-text1:hsl(200, 15%, 8%);
+        --color-bg1:hsl(0, 0%, 98%);
+        --color-highlight1:hsl(0, 0%, 100%);
+
+        --color-text2:#FFF;
+        --color-bg2:hsl(207, 26%, 17%);
+        --color-highlight2:hsl(209, 23%, 22%);
+    }
+}

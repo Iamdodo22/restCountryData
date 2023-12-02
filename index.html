@@ -25,24 +25,39 @@
 
     <header class="flex justify-between px-8 py-3 bg-pWhite shadow-md">
        <div class="font-bold">Where in the world?</div>
-       <div class="flex gap-1 items-center">
-        <img src="/img/dark-mode.svg" alt="theme-icon">
-        <span>Dark Mode</span>
-       </div> 
+
+       <div class="relative w-[100px] cursor-pointer themeCon">
+           <div class="flex gap-1 items-center absolute top-0 left-0 w-full invisible light theme">
+            <img src="/img/dark-mode.svg" alt="theme-icon">
+            <span class="whitespace-nowrap max-[300px]:whitespace-normal">Dark Mode</span>
+           </div> 
+
+           <div class="flex gap-1 items-center absolute top-0 left-0 w-full dark theme">
+            <img src="/img/light-mode.svg" alt="theme-icon">
+            <span class="whitespace-nowrap max-[300px]:whitespace-normal">light Mode</span>
+           </div> 
+       </div>
     </header>
     <main class="px-8 py-5 relative">
         <div class="page-1 text-homepage">
 
             <section class="flex justify-between mb-5 max-md:flex-col max-md:gap-4">
                 <form class="submit-query flex gap-2 items-center bg-pWhite shadow-lg p-2 max-w-max">
-                    <img src="/img/search-icon.svg" alt="search-icon">
-                    <input type="search" placeholder="Search for a country" class="outline-none placeholder:text-sm ">
+
+                    <span class="">
+                        <svg class="search fill-current text-LightModeText" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+                            <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg>
+                    </span>
+
+                    <input type="search" placeholder="Search for a country" class="outline-none placeholder:text-sm bg-inherit">
                 </form>
     
                 <div class="sel-con flex flex-col w-[180px] z-10 relative">
                     <div class="flex justify-between shadow-md p-2 bg-pWhite mb-2 items-center rounded-t-md cursor-pointer">
                         <div class="select font-semibold">Filter by Region</div>
-                        <img src="/img/arrow-down.svg" alt="" class="arrow-icon transition-transform">
+                        <span>
+                            <svg class="arrow-icon transition-transform fill-current text-LightModeText" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/></svg>
+                        </span>
                     </div>
                     <ul class="ul flex flex-col bg-pWhite absolute top-12 left-0 w-full shadow-md rounded-b-md p-2 invisible font-semibold">
                         <li>Africa</li>
@@ -74,7 +89,9 @@
 
         <div class="page-2 absolute top-0 left-0 p-10 z-50 w-full hidden text-detailPage">
             <span class="btn-back bg-pWhite px-4 py-2 flex justify-center items-center shadow-md rounded-md max-w-max cursor-pointer">
-                <img src="/img/back-icon.svg" alt="">
+                <div>
+                    <svg class="fill-current text-LightModeText" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"/></svg>
+                </div>
                 <p>Back</p>
             </span>
 

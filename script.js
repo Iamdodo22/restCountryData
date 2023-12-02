@@ -14,9 +14,58 @@ const btnBack = document.querySelector('.btn-back');
 const homePage = document.querySelector('.page-1');
 const page2 = document.querySelector('.page-2');
 
+const themeCon = document.querySelector('.themeCon');
+const lightTheme = document.querySelector('.light');
+const darkTheme = document.querySelector('.dark');
+
 const API_URL = "https://restcountries.com/v3.1/";
 
 ////////////////////////////////////////////////////////////////////////////////
+
+//settings for theme
+let currentTheme;
+const lightMode = function() {
+    
+}
+
+const darktMode = function() {
+    
+}
+
+
+themeCon.addEventListener('click', function(e){
+    const btn = e.target.closest('.theme');
+    if(!btn)return;
+    if(btn.classList.contains('light')){
+        console.log('go to dark')
+        currentTheme = 1;
+        lightTheme.classList.toggle('invisible');
+        darkTheme.classList.toggle('invisible');
+        document.documentElement.style.setProperty('--color-text', `var(--color-text${currentTheme})`);
+        document.documentElement.style.setProperty('--color-bg', `var(--color-bg${currentTheme})`);
+        document.documentElement.style.setProperty('--color-highlight', `var(--color-highlight${currentTheme})`);
+       
+    }
+
+    if(btn.classList.contains('dark')){
+        console.log('go to light')
+        currentTheme = 2;
+        lightTheme.classList.toggle('invisible');
+        darkTheme.classList.toggle('invisible');
+        document.documentElement.style.setProperty('--color-text', `var(--color-text${currentTheme})`);
+        document.documentElement.style.setProperty('--color-bg', `var(--color-bg${currentTheme})`);
+        document.documentElement.style.setProperty('--color-highlight', `var(--color-highlight${currentTheme})`);
+        
+    }
+
+   
+    // document.documentElement.style.setProperty('--color-text', `var(--color-text${currentTheme})`);
+    // document.documentElement.style.setProperty('--color-bg', `var(--color-bg${currentTheme})`);
+    // document.documentElement.style.setProperty('--color-highlight', `var(--color-highlight${currentTheme})`);
+})
+
+// functions...
+
 
 function change() {
     regionOptionsCon.classList.toggle('invisible');
@@ -27,12 +76,7 @@ selectCon.addEventListener('click', function() {
     change();
 })
 
-regionOptions.forEach(function(opt) {
-    opt.addEventListener('click', function() {
-        regionSelect.textContent = this.textContent;
-        loadCountryRegion(`${regionSelect.textContent}`);
-    })
-})
+
 
 const renderCountryClick = function(data) {
    const markup = `
@@ -77,10 +121,9 @@ const renderCountryClick = function(data) {
         btnBack.insertAdjacentHTML('afterend', markup);
 }
 
-// functions...
 const renderCountrySearch = function(data) {
     const markup = `
-    <div class="country shadow-md rounded-md cursor-pointer">
+    <div class="country shadow-md rounded-md cursor-pointer bg-pWhite">
             <img src="${data.flags.svg}"
             alt="${data.name.common}"
             class="w-full h-32">
@@ -101,7 +144,7 @@ const renderError = function() {
 }
 
 
-// data handling
+// data handling //////////////////////////////////
 
 const loadCountrySearch = async function(country) {
     try{
@@ -137,7 +180,7 @@ const loadCountryRegion = async function(region) {
         data.forEach(function(con) {
             
             const markup = `
-            <div class="country shadow-md rounded-md cursor-pointer">
+            <div class="country shadow-md rounded-md cursor-pointer bg-pWhite">
             <img src="${con.flags.svg}"
             alt="${con.name.common}"
             class="w-full h-32">
@@ -162,7 +205,15 @@ const loadCountryRegion = async function(region) {
 }
 
 
-//event handler
+//event handler/////////////////////////////////////////
+
+regionOptions.forEach(function(opt) {
+    opt.addEventListener('click', function() {
+        regionSelect.textContent = this.textContent;
+        loadCountryRegion(`${regionSelect.textContent}`);
+    })
+})
+
 btnSearch.addEventListener('submit', function(e) {
     e.preventDefault();
     const {value} = inputSearch;
@@ -172,7 +223,6 @@ btnSearch.addEventListener('submit', function(e) {
     inputSearch.blur()
 })
 
- //show country info on click 
  countryCon.addEventListener('click', function(el) {
     const country = el.target.closest('.country');
     if(!country) return;
