@@ -16,6 +16,8 @@ const page2 = document.querySelector('.page-2');
 
 const API_URL = "https://restcountries.com/v3.1/";
 
+////////////////////////////////////////////////////////////////////////////////
+
 function change() {
     regionOptionsCon.classList.toggle('invisible');
     arrowIcon.classList.toggle('rotate-180');
@@ -34,7 +36,7 @@ regionOptions.forEach(function(opt) {
 
 const renderCountryClick = function(data) {
    const markup = `
-            <div class="displayClick grid grid-cols-2 max-sm:grid-cols-1 gap-10 items-center mt-8">
+            <div class="displayClick grid grid-cols-2 max-lg:grid-cols-1 gap-10 items-center mt-8">
                 <img src="${data.flags.svg}" 
                 alt="${data.name.common}"
                 class="w-full ">
@@ -42,7 +44,7 @@ const renderCountryClick = function(data) {
                 <span class="flex flex-col gap-8">
                     <div class="flex flex-col justify-between">
                         <h2 class="mb-4 font-bold">${data.name.common}</h2>
-                        <span class="flex justify-between max-sm:flex-col max-sm:gap-4">
+                        <span class="flex justify-between max-lg:flex-col max-lg:gap-4">
                             <ul>
                                 <li class="font-semibold">Native Name: <span class="font-normal">${Object.values(data.name.nativeName)[0].common} </span></li>
                                 <li class="font-semibold">population: <span class="font-normal">${data.population}</span></li>
@@ -57,13 +59,13 @@ const renderCountryClick = function(data) {
                             </ul>
                         </span>
                     </div>
-                    <div class="flex gap-4 max-sm:flex-col items-center max-sm:items-start">
-                        <h3 class="con font-semibold">Border Countries:</h3>
+                    <div class="flex gap-4 max-lg:flex-col items-center max-lg:items-start">
+                        <h3 class="con font-semibold mb-4">Border Countries:</h3>
                         <ul class="flex flex-wrap gap-2">
                             ${
                                 data.borders?.map(con =>{
                                 return`
-                                    <li class="px-3 py-1 rounded-md shadow font-semibold">${con}</li>
+                                    <li class="px-4 py-1 rounded-md shadow font-semibold">${con}</li>
                                 `
                             }).join('')??''}
                         </ul>
