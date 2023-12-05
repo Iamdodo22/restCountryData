@@ -23,46 +23,45 @@ const API_URL = "https://restcountries.com/v3.1/";
 ////////////////////////////////////////////////////////////////////////////////
 
 //settings for theme
-let currentTheme;
-const lightMode = function() {
-    
-}
+let currentTheme = 1;
 
-const darktMode = function() {
-    
+const handleTheme = function(currentTheme) {
+    darkTheme.classList.toggle('invisible');
+    lightTheme.classList.toggle('invisible');
+    document.documentElement.style.setProperty('--color-text', `var(--color-text${currentTheme})`);
+    document.documentElement.style.setProperty('--color-bg', `var(--color-bg${currentTheme})`);
+    document.documentElement.style.setProperty('--color-highlight', `var(--color-highlight${currentTheme})`);
 }
-
 
 themeCon.addEventListener('click', function(e){
     const btn = e.target.closest('.theme');
     if(!btn)return;
     if(btn.classList.contains('light')){
-        console.log('go to dark')
         currentTheme = 1;
-        lightTheme.classList.toggle('invisible');
-        darkTheme.classList.toggle('invisible');
-        document.documentElement.style.setProperty('--color-text', `var(--color-text${currentTheme})`);
-        document.documentElement.style.setProperty('--color-bg', `var(--color-bg${currentTheme})`);
-        document.documentElement.style.setProperty('--color-highlight', `var(--color-highlight${currentTheme})`);
        
     }
 
     if(btn.classList.contains('dark')){
-        console.log('go to light')
         currentTheme = 2;
-        lightTheme.classList.toggle('invisible');
-        darkTheme.classList.toggle('invisible');
-        document.documentElement.style.setProperty('--color-text', `var(--color-text${currentTheme})`);
-        document.documentElement.style.setProperty('--color-bg', `var(--color-bg${currentTheme})`);
-        document.documentElement.style.setProperty('--color-highlight', `var(--color-highlight${currentTheme})`);
         
     }
-
-   
-    // document.documentElement.style.setProperty('--color-text', `var(--color-text${currentTheme})`);
-    // document.documentElement.style.setProperty('--color-bg', `var(--color-bg${currentTheme})`);
-    // document.documentElement.style.setProperty('--color-highlight', `var(--color-highlight${currentTheme})`);
+    handleTheme(currentTheme);
+    const setTheme = localStorage.setItem('theme', `${currentTheme}`);
+    
 })
+
+const init = function() {
+    const getTheme = localStorage.getItem('theme');
+
+    if(getTheme === '2') {
+        darkTheme.classList.toggle('invisible');
+        lightTheme.classList.toggle('invisible');
+    }
+    document.documentElement.style.setProperty('--color-text', `var(--color-text${getTheme})`);
+    document.documentElement.style.setProperty('--color-bg', `var(--color-bg${getTheme})`);
+    document.documentElement.style.setProperty('--color-highlight', `var(--color-highlight${getTheme})`);
+}
+init();
 
 // functions...
 
